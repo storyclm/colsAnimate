@@ -1,14 +1,17 @@
 $(function(){
-    $('.col').colsAnimate({
-        startDelay: 1000,
-        animDelay: 500,
-        animSpeed: 500
-    });
-    $('.col2').colsAnimate({
-        startDelay: 3000,
-        animDelay: 500,
-        animSpeed: 500,
-        animDirection: 'down'
-    });
-});
+    setTimeout(function(){
+        $('.col').colsAnimate({
+            animDelay: 500,
+            animSpeed: 500
+        });
+    },1000);
 
+    setTimeout(function(){
+        $('.col2').colsAnimate({
+            animDelay: 500,
+            animSpeed: 500,
+            animDirection: 'down'
+        });
+    },3000);
+
+});

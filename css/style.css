@@ -80,3 +80,40 @@ h1 {
     background: url(../img/col6.png);
     background-size: 100% 100%;
 }
+
+
+.value {
+    position: absolute;
+    color: #666666;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    width: 70px;
+    margin-top: -36px;
+}
+
+.v1 {
+    top: 340px;
+    left: 100px;
+}
+.v2 {
+    top: 320px;
+    left: 200px;
+}
+.v3 {
+    top: 290px;
+    left: 300px;
+}
+.v4 {
+    top: 280px;
+    left: 400px;
+}
+
+.v5 {
+    top: 280px;
+    left: 700px;
+}
+.v6 {
+    top: 280px;
+    left: 800px;
+}
