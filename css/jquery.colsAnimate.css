@@ -3,9 +3,9 @@
     height: 0;
     overflow: hidden;
 }
-.cols, .vals {
+.col, .value {
     display: none;
 }
-.cols.active, .vals.active {
+.col.active, .value.active {
     display: block;
 }

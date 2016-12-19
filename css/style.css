@@ -80,7 +80,24 @@ h1 {
     background: url(../img/col6.png);
     background-size: 100% 100%;
 }
-
+.col-7 {
+    position: absolute;
+    top: 570px;
+    left: 200px;
+    width: 600px;
+    height: 52px;
+    background: url(../img/col7.png);
+    background-size: 100% 100%;
+}
+.col-8 {
+    position: absolute;
+    top: 650px;
+    left: 200px;
+    width: 600px;
+    height: 52px;
+    background: url(../img/col8.png);
+    background-size: 100% 100%;
+}
 
 .value {
     position: absolute;
@@ -116,4 +133,14 @@ h1 {
 .v6 {
     top: 280px;
     left: 800px;
+}
+.v7 {
+    margin-top: 0;
+    top: 583px;
+    left: 800px;
+}
+.v8 {
+    margin-top: 0;
+    top: 660px;
+    left: 130px;
 }

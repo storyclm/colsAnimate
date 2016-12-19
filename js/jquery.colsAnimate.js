@@ -3,14 +3,18 @@
         var settings = $.extend( {
             'animDelay': 500,
             'animSpeed': 500,
-            'animDirection': 'up', // example = 'animDirection': 'up' , 'animDirection': 'down' - Направление анимации
-            'parentHeight' : 'auto' // example = 'parentHeight': 'auto' , 'parentHeight': 1000 - Высота родительского блока
+            'animDirection': 'up', // example = 'animDirection': 'up', 'down', 'left', 'right' - Направление анимации
+            'parentHeight' : 'auto', // example = 'parentHeight': 'auto' , 'parentHeight': 1000 - Высота родительского блока
+            'parentWidth' : 'auto' // example = 'parentWidth': 'auto' , 'parentWidth': 1000 - Ширина родительского блока
         }, options);
 
         var start = false;
 
         if(settings.parentHeight == 'auto') {
             settings.parentHeight = this.parent().height();
+        }
+        if(settings.parentWidth == 'auto') {
+            settings.parentWidth = this.parent().width();
         }
 
         this.each(function(index) {
@@ -19,8 +23,9 @@
                     item = $(that);
                     item.addClass('active');
                     left_pos = item.position().left;
-                    bottom_pos = settings.parentHeight - item.position().top - item.height();
                     top_pos = item.position().top;
+                    bottom_pos = settings.parentHeight - item.position().top - item.height();
+                    right_pos = settings.parentWidth- item.position().left - item.width();
                     item_w = item.width();
                     item_h = item.height();
 
@@ -49,6 +54,33 @@
                             'width': item_w
                         });
                     }
+                    else if(settings.animDirection == 'right'){
+                        item.css({
+                            'top': 0,
+                            'left' : 0,
+                            'bottom': 0,
+                        });
+                        item.wrap("<div class='col-wrap'></div>");
+                        item.parent().css({
+                            'left': left_pos,
+                            'top': top_pos,
+                            'height': item_h
+                        });
+                    }
+                    else if(settings.animDirection == 'left'){
+                        item.css({
+                            'top': 0,
+                            'left' : 'auto',
+                            'bottom': 0,
+                            'right' : 0
+                        });
+                        item.wrap("<div class='col-wrap'></div>");
+                        item.parent().css({
+                            'right': right_pos,
+                            'top': top_pos,
+                            'height': item_h
+                        });
+                    }
 
                     //Рост значений вместе со столбиками
 
@@ -58,7 +90,7 @@
 
                     var valStep = 10;
                     var valMax = valItem.data('val');
-                    var valSpeed = 500/(valMax/valStep);
+                    var valSpeed = settings.animSpeed/(valMax/valStep);
 
                     var valUp = setInterval(function(){
                         valOld = valItem.html()*1;
@@ -70,10 +102,15 @@
                         valItem.html(valNew);
                     },valSpeed);
 
-                    item.parent().animate({height: item_h}, settings.animSpeed);
+                    if(settings.animDirection == 'up' || settings.animDirection == 'down'){
+                        item.parent().animate({height: item_h}, settings.animSpeed);
+                    } else {
+                        item.parent().animate({width: item_w}, settings.animSpeed);
+                    }
+
                     settings.startDelay += settings.animDelay;
 
-                }, 500 * i);
+                }, settings.animDelay * i);
 
             })(this, index);
         });

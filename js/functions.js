@@ -1,6 +1,6 @@
 $(function(){
     setTimeout(function(){
-        $('.col').colsAnimate({
+        $('.col1').colsAnimate({
             animDelay: 500,
             animSpeed: 500
         });
@@ -14,4 +14,19 @@ $(function(){
         });
     },3000);
 
+    setTimeout(function(){
+        $('.col3').colsAnimate({
+            animDelay: 500,
+            animSpeed: 1000,
+            animDirection: 'right'
+        });
+    },4000);
+
+    setTimeout(function(){
+        $('.col4').colsAnimate({
+            animDelay: 500,
+            animSpeed: 1000,
+            animDirection: 'left'
+        });
+    },5000);
 });
