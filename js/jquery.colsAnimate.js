@@ -4,8 +4,9 @@
             'animDelay': 500,
             'animSpeed': 500,
             'animDirection': 'up', // example = 'animDirection': 'up', 'down', 'left', 'right' - Направление анимации
-            'parentHeight' : 'auto', // example = 'parentHeight': 'auto' , 'parentHeight': 1000 - Высота родительского блока
-            'parentWidth' : 'auto' // example = 'parentWidth': 'auto' , 'parentWidth': 1000 - Ширина родительского блока
+            'parentHeight': 'auto', // example = 'parentHeight': 'auto' , 'parentHeight': 1000 - Высота родительского блока
+            'parentWidth': 'auto', // example = 'parentWidth': 'auto' , 'parentWidth': 1000 - Ширина родительского блока
+            'valueStep': 10
         }, options);
 
         var start = false;
@@ -29,57 +30,59 @@
                     item_w = item.width();
                     item_h = item.height();
 
-                    if(settings.animDirection == 'up'){
-                        item.css({
-                            'top': 0,
-                            'left' : 0
-                        });
-                        item.wrap("<div class='col-wrap'></div>");
-                        item.parent().css({
-                            'left': left_pos,
-                            'bottom': bottom_pos,
-                            'width': item_w
-                        });
-                    }
-                    else if(settings.animDirection == 'down'){
-                        item.css({
-                            'top': 'auto',
-                            'left' : 0,
-                            'bottom': 0
-                        });
-                        item.wrap("<div class='col-wrap'></div>");
-                        item.parent().css({
-                            'left': left_pos,
-                            'top': top_pos,
-                            'width': item_w
-                        });
-                    }
-                    else if(settings.animDirection == 'right'){
-                        item.css({
-                            'top': 0,
-                            'left' : 0,
-                            'bottom': 0,
-                        });
-                        item.wrap("<div class='col-wrap'></div>");
-                        item.parent().css({
-                            'left': left_pos,
-                            'top': top_pos,
-                            'height': item_h
-                        });
-                    }
-                    else if(settings.animDirection == 'left'){
-                        item.css({
-                            'top': 0,
-                            'left' : 'auto',
-                            'bottom': 0,
-                            'right' : 0
-                        });
-                        item.wrap("<div class='col-wrap'></div>");
-                        item.parent().css({
-                            'right': right_pos,
-                            'top': top_pos,
-                            'height': item_h
-                        });
+                    switch (settings.animDirection) {
+                        case 'up':
+                            item.css({
+                                'top': 0,
+                                'left' : 0
+                            });
+                            item.wrap("<div class='col-wrap'></div>");
+                            item.parent().css({
+                                'left': left_pos,
+                                'bottom': bottom_pos,
+                                'width': item_w
+                            });
+                            break;
+                        case 'down':
+                            item.css({
+                                'top': 'auto',
+                                'left' : 0,
+                                'bottom': 0
+                            });
+                            item.wrap("<div class='col-wrap'></div>");
+                            item.parent().css({
+                                'left': left_pos,
+                                'top': top_pos,
+                                'width': item_w
+                            });
+                            break;
+                        case 'left':
+                            item.css({
+                                'top': 0,
+                                'left' : 'auto',
+                                'bottom': 0,
+                                'right' : 0
+                            });
+                            item.wrap("<div class='col-wrap'></div>");
+                            item.parent().css({
+                                'right': right_pos,
+                                'top': top_pos,
+                                'height': item_h
+                            });
+                            break;
+                        case 'right':
+                            item.css({
+                                'top': 0,
+                                'left' : 0,
+                                'bottom': 0
+                            });
+                            item.wrap("<div class='col-wrap'></div>");
+                            item.parent().css({
+                                'left': left_pos,
+                                'top': top_pos,
+                                'height': item_h
+                            });
+                            break;
                     }
 
                     //Рост значений вместе со столбиками
@@ -88,7 +91,7 @@
 
                     valItem.addClass('active');
 
-                    var valStep = 10;
+                    var valStep = settings.valueStep;
                     var valMax = valItem.data('val');
                     var valSpeed = settings.animSpeed/(valMax/valStep);
 
