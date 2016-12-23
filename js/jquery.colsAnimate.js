@@ -9,8 +9,6 @@
             'valueStep': 10
         }, options);
 
-        var start = false;
-
         if(settings.parentHeight == 'auto') {
             settings.parentHeight = this.parent().height();
         }
@@ -30,58 +28,24 @@
                     item_w = item.width();
                     item_h = item.height();
 
+                    item.wrap("<div class='col-wrap'></div>");
+
                     switch (settings.animDirection) {
                         case 'up':
-                            item.css({
-                                'top': 0,
-                                'left' : 0
-                            });
-                            item.wrap("<div class='col-wrap'></div>");
-                            item.parent().css({
-                                'left': left_pos,
-                                'bottom': bottom_pos,
-                                'width': item_w
-                            });
+                            item.css({'top': 0, 'left' : 0});
+                            item.parent().css({'left': left_pos, 'bottom': bottom_pos, 'width': item_w});
                             break;
                         case 'down':
-                            item.css({
-                                'top': 'auto',
-                                'left' : 0,
-                                'bottom': 0
-                            });
-                            item.wrap("<div class='col-wrap'></div>");
-                            item.parent().css({
-                                'left': left_pos,
-                                'top': top_pos,
-                                'width': item_w
-                            });
+                            item.css({'top': 'auto', 'left': 0, 'bottom': 0});
+                            item.parent().css({'left': left_pos, 'top': top_pos, 'width': item_w});
                             break;
                         case 'left':
-                            item.css({
-                                'top': 0,
-                                'left' : 'auto',
-                                'bottom': 0,
-                                'right' : 0
-                            });
-                            item.wrap("<div class='col-wrap'></div>");
-                            item.parent().css({
-                                'right': right_pos,
-                                'top': top_pos,
-                                'height': item_h
-                            });
+                            item.css({'top': 0,'left': 'auto', 'bottom': 0, 'right': 0});
+                            item.parent().css({'right': right_pos, 'top': top_pos, 'height': item_h});
                             break;
                         case 'right':
-                            item.css({
-                                'top': 0,
-                                'left' : 0,
-                                'bottom': 0
-                            });
-                            item.wrap("<div class='col-wrap'></div>");
-                            item.parent().css({
-                                'left': left_pos,
-                                'top': top_pos,
-                                'height': item_h
-                            });
+                            item.css({'top': 0, 'left' : 0, 'bottom': 0});
+                            item.parent().css({'left': left_pos, 'top': top_pos, 'height': item_h});
                             break;
                     }
 
@@ -119,6 +83,3 @@
         });
     };
 })(jQuery);
-
-
-
